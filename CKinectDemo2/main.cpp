@@ -12,5 +12,6 @@ int main() {
 		f.Update();
 	}
 	system("pause");
+	cout << "final" << endl;
 	return 0;
 }
