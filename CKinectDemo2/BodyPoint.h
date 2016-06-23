@@ -39,17 +39,20 @@ struct BodyPointPosition
 	float x;
 	float y;
 	float z;
+
+
+	bool operator==(const BodyPointPosition& rhs) const
+	{
+		return (x == rhs.x && y == rhs.y) && (z == rhs.z && name == rhs.name);
+	}
+
+	bool operator!=(const BodyPointPosition& lhs)
+	{
+		return !((lhs.x == x && lhs.y == y) && (lhs.z == z && lhs.name == name));
+	}
 };
 
-bool operator==(const BodyPointPosition& lhs, const BodyPointPosition& rhs)
-{
-	return (lhs.x == rhs.x && lhs.y == rhs.y) && (lhs.z == rhs.z && lhs.name == rhs.name);
-}
 
-bool operator!=(const BodyPointPosition& lhs, const BodyPointPosition& rhs)
-{
-	return !((lhs.x == rhs.x && lhs.y == rhs.y) && (lhs.z == rhs.z && lhs.name == rhs.name));
-}
 
 #endif _BODY_PARTS_
 

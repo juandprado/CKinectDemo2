@@ -72,6 +72,10 @@
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(KINECTSDK10_DIR)\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(KINECTSDK10_DIR)\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(KINECTSDK10_DIR)\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(KINECTSDK10_DIR)\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -89,6 +93,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(KINECTSDK10_DIR)/lib/x64</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
