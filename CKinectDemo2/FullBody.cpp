@@ -15,7 +15,8 @@ void FullBody::dataKinect()
 {
 	cout << "Entra a datakinect" << endl;
 	while (true) {
-		sensorOneKinect->Update();
+		//sensorOneKinect->Update();
+		sensorOneKinect->Start();
 		cout << "Position " << bodyPointsCollection[0][0].getCurrentPosition().x << bodyPointsCollection[0][0].getCurrentPosition().y  << bodyPointsCollection[0][0].getCurrentPosition().z << endl;
 	}
 }

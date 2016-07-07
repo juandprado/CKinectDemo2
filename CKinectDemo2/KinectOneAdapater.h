@@ -3,6 +3,11 @@
 #include <windows.h>
 #include <Ole2.h>
 #include <NuiApi.h>
+
+#include <cstdlib>
+#include <string>
+#include <mutex>
+#include <condition_variable>
 #include "BodyPoint.h"
 using namespace std;
 
@@ -15,12 +20,16 @@ public:
 	void Update();
 	float* returnPosition(BodyParts part);
 	void setBodyPoints(BodyPoint** points);
+	void Start();
+	void Stop();
 
 private:
 	INuiSensor* m_pNuiSensor;
 	BSTR m_instanceId;
 	HANDLE m_hNextSkeletonEvent;
-	HRESULT Start();
+	HRESULT HStart();
+
+	
 
 	HRESULT	FindKinectSensor();
 	void SkeletonFrameReady(NUI_SKELETON_FRAME* pSkeletonFrame);

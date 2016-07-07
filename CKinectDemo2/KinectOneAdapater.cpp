@@ -1,23 +1,43 @@
 #include "KinectOneAdapater.h"
 #include <thread>
+
 using namespace std;
 
 
 KinectOneAdapter::KinectOneAdapter()
 {
 	counter = NULL;
-	HRESULT connect = Start();
+	HRESULT connect = HStart();
 	if (connect!=S_OK) {
 		cout << "Kinect not connected" << endl;
 	}
 }
 
+void KinectOneAdapter::Start() {
+	cout << "Iniciando hilo" << endl;
+	try {
+		thread hilo([&]() {
+			cout << "Dentro del hilo" << endl;
+			while (true) {
+				Update();
+			}
+			cout << "Fin update" << endl;
+		});
+	}
+	catch (exception e) {
+		cout << "error hilo" << endl;
+	}
+}
+
+void KinectOneAdapter::Stop() {
+
+}
 
 KinectOneAdapter::~KinectOneAdapter()
 {
 }
 
-HRESULT KinectOneAdapter::Start()
+HRESULT KinectOneAdapter::HStart()
 {
 	m_hNextSkeletonEvent = NULL;
 
