@@ -63,10 +63,10 @@ public:
 	BodyPoint(BodyParts point);
 	~BodyPoint();
 	BodyParts pointRepresented;
+	void setPosition(BodyPointPosition position);
 	BodyPointPosition getCurrentPosition();
-	BodyPointPosition updatePosition(NUI_SKELETON_DATA & skeleton);
+
 private:
 	BodyPointPosition currentPosition;
-	_NUI_SKELETON_POSITION_INDEX mapPoint(BodyParts part);
 };
 

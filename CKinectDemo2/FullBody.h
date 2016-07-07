@@ -14,10 +14,14 @@ public:
 	FullBody();
 	FullBody(int sensor);
 	~FullBody();
-	BodyPointPosition returnPosition(BodyParts nameBodyPoint);
+	BodyPointPosition returnPosition(BodyParts joint);
 
 private:	
-	KinectOneAdapter sensorOneKinect;
+
+	BodyPoint* bodyPointsCollection[21];
+	BodyParts translateNumber(int number);
+	KinectOneAdapter* sensorOneKinect;
+	void dataKinect();
 
 };
 

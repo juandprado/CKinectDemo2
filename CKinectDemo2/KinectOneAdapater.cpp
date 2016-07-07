@@ -1,13 +1,15 @@
 #include "KinectOneAdapater.h"
+#include <thread>
 using namespace std;
 
 
 KinectOneAdapter::KinectOneAdapter()
 {
-
 	counter = NULL;
-	Start();
-
+	HRESULT connect = Start();
+	if (connect!=S_OK) {
+		cout << "Kinect not connected" << endl;
+	}
 }
 
 
@@ -39,27 +41,46 @@ HRESULT KinectOneAdapter::Start()
 	return hr;
 }
 
-float * KinectOneAdapter::returnPosition()
-{
-	return nullptr;
-}
 
 // Call UpdateKinectST on each iteration of the application's update loop.
 void KinectOneAdapter::Update()
 {
-	// Wait for 0ms, just quickly test if it is time to process a skeleton
-	if (WAIT_OBJECT_0 == WaitForSingleObject(m_hNextSkeletonEvent, 0))
-	{
-		NUI_SKELETON_FRAME skeletonFrame = { 0 };
 
-		// Get the skeleton frame that is ready
-		if (SUCCEEDED(m_pNuiSensor->NuiSkeletonGetNextFrame(0, &skeletonFrame)))
+		// Wait for 0ms, just quickly test if it is time to process a skeleton
+		if (WAIT_OBJECT_0 == WaitForSingleObject(m_hNextSkeletonEvent, 0))
 		{
-			// Process the skeleton frame
-			SkeletonFrameReady(&skeletonFrame);
+			NUI_SKELETON_FRAME skeletonFrame = { 0 };
+
+			// Get the skeleton frame that is ready
+			if (SUCCEEDED(m_pNuiSensor->NuiSkeletonGetNextFrame(0, &skeletonFrame)))
+			{
+				// Process the skeleton frame
+				SkeletonFrameReady(&skeletonFrame);
+			}
+		}
+
+}
+
+
+
+void KinectOneAdapter::updateBodyPoints(NUI_SKELETON_DATA & skeleton) {
+
+	int pointsDifferent = 0;
+	for (int i = 0; i < NUI_SKELETON_POSITION_COUNT; i++) {
+		try
+		{
+			BodyPointPosition current = updatePosition(skeleton, i);
+			cout << "Trin 1" << endl;
+			bodyPointsCollection[i]->setPosition(current);
+			cout << "Trin 2" << endl;
+		}
+		catch (exception e) {
+			cout << "Excepcion en updateBodyPoints: " << e.what() << endl;
 		}
 	}
 }
+
+
 
 HRESULT	KinectOneAdapter::FindKinectSensor()
 {
@@ -88,13 +109,19 @@ void KinectOneAdapter::SkeletonFrameReady(NUI_SKELETON_FRAME* pSkeletonFrame)
 	}
 }
 
-float* KinectOneAdapter::returnPosition(BodyParts part) {
-	float position[3];
-	int jointIndex = mapPoint(part);
-	position[0] = currentBody.SkeletonPositions[jointIndex].x;
-	position[1] = currentBody.SkeletonPositions[jointIndex].y;
-	position[2] = currentBody.SkeletonPositions[jointIndex].z;
-	return position;
+BodyPointPosition KinectOneAdapter::updatePosition(NUI_SKELETON_DATA & skeleton, int jointIndex)
+{
+	currentPosition.x = skeleton.SkeletonPositions[jointIndex].x;
+	currentPosition.y = skeleton.SkeletonPositions[jointIndex].y;
+	currentPosition.z = skeleton.SkeletonPositions[jointIndex].z;
+	return currentPosition;
+
+}
+
+
+void KinectOneAdapter::setBodyPoints(BodyPoint** points)
+{
+	bodyPointsCollection = points;
 }
 
 _NUI_SKELETON_POSITION_INDEX KinectOneAdapter::mapPoint(BodyParts part) {
@@ -141,3 +168,6 @@ _NUI_SKELETON_POSITION_INDEX KinectOneAdapter::mapPoint(BodyParts part) {
 		return NUI_SKELETON_POSITION_FOOT_RIGHT;
 	}
 }
+
+
+
