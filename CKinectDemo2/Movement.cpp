@@ -83,6 +83,8 @@ void Movement::initMov()
 bool Movement::finishMov()
 {
 
+	cout << "Angulo : " << getAngleJoints(jointOne, jointCenter, jointTwo) << endl;
+
 	if (initial) {
 		calPercentMov();
 		if (percentaje > 90) {
