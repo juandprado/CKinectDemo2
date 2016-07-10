@@ -13,11 +13,8 @@ FullBody::FullBody()
 
 void FullBody::dataKinect()
 {
-	cout << "Entra a datakinect" << endl;
-	while (true) {
-		sensorOneKinect->Update();
-		cout << "Position " << bodyPointsCollection[0][0].getCurrentPosition().x << bodyPointsCollection[0][0].getCurrentPosition().y  << bodyPointsCollection[0][0].getCurrentPosition().z << endl;
-	}
+	cout << "Datakinect" << endl;
+	sensorOneKinect->Update();
 }
 
 FullBody::FullBody(int sensor)
@@ -50,6 +47,31 @@ BodyPointPosition FullBody::returnPosition(BodyParts joint)
 	const int num = joint;
 	BodyPointPosition position = bodyPointsCollection[num]->getCurrentPosition();
 	return  position;
+}
+
+float FullBody::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyParts pointTwo)
+{
+
+
+	BodyPointPosition positionOne = returnPosition(pointOne);
+	BodyPointPosition positionCenter = returnPosition(pointCenter);
+	BodyPointPosition positionTwo = returnPosition(pointTwo);
+
+	float vecAB[] = { positionOne.x - positionCenter.x, positionOne.y - positionCenter.y, positionOne.z - positionCenter.z };
+	float vecBC[] = { positionTwo.x - positionCenter.x, positionTwo.y - positionCenter.y, positionTwo.z - positionCenter.z };
+
+	float magAB = (float)sqrt(vecAB[0] * vecAB[0] + vecAB[1] * vecAB[1] + vecAB[2] * vecAB[2]);
+	float magBC = (float)sqrt(vecBC[0] * vecBC[0] + vecBC[1] * vecBC[1] + vecBC[2] * vecBC[2]);
+
+	float vecNormAB[] = { vecAB[0] / magAB, vecAB[1] / magAB, vecAB[2] / magAB };
+	float vecNormBC[] = { vecBC[0] / magBC, vecBC[1] / magBC, vecBC[2] / magBC };
+
+	float producto = vecNormAB[0] * vecNormBC[0] + vecNormAB[1] * vecNormBC[1] + vecNormAB[2] * vecNormBC[2];
+	float angulo = cos(producto) * 180.0f / (PI);
+
+	cout << "Angulo: ";
+
+	return 0.0f;
 }
 
 

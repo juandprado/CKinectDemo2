@@ -11,8 +11,9 @@ int main() {
 	FullBody f = FullBody(1);
 
 	while (true) {
-		BodyPointPosition p = f.returnPosition(Head);
-		cout << "Position " << p.x << p.y << p.z << endl;
+		f.dataKinect();
+		//float angle = f.getAngleJoints(HipLeft, ShoulderLeft, ElbowLeft);
+		//cout << "Position " << angle << endl;
 	}
 	system("pause");
 	cout << "final" << endl;

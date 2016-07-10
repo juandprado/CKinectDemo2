@@ -46,9 +46,12 @@ HRESULT KinectOneAdapter::Start()
 void KinectOneAdapter::Update()
 {
 
+	cout << "def up" << endl;
 		// Wait for 0ms, just quickly test if it is time to process a skeleton
 		if (WAIT_OBJECT_0 == WaitForSingleObject(m_hNextSkeletonEvent, 0))
 		{
+			cout << "def up2" << endl;
+
 			NUI_SKELETON_FRAME skeletonFrame = { 0 };
 
 			// Get the skeleton frame that is ready
@@ -70,9 +73,9 @@ void KinectOneAdapter::updateBodyPoints(NUI_SKELETON_DATA & skeleton) {
 		try
 		{
 			BodyPointPosition current = updatePosition(skeleton, i);
-			cout << "Trin 1" << endl;
+			//cout << "Trin 1" << endl;
 			bodyPointsCollection[i]->setPosition(current);
-			cout << "Trin 2" << endl;
+			//cout << "Trin 2" << endl;
 		}
 		catch (exception e) {
 			cout << "Excepcion en updateBodyPoints: " << e.what() << endl;
