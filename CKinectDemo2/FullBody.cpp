@@ -13,16 +13,24 @@ FullBody::FullBody()
 
 void FullBody::dataKinect()
 {
-	cout << "Datakinect" << endl;
-	sensorOneKinect->Update();
+	//cout << "Datakinect" << endl;
+	while (true) {
+		sensorOneKinect->Update();
+		float angle = getAngleJoints(HipLeft, ShoulderLeft, ElbowLeft);
+		cout << "Angle " << angle << endl;
+	}
+	
 }
 
 FullBody::FullBody(int sensor)
 {
-	cout << "Entra constructor" << endl;
+	//cout << "Entra constructor" << endl;
 	for (int i = 0; i < 21; i++) {
-		bodyPointsCollection[i] = &BodyPoint(translateNumber(i));
+		bodyPointsCollection[i] = new BodyPoint(translateNumber(i));
+		bodyPointsCollection[i]->getCurrentPosition();
 	}	
+
+	bodyPointsCollection[14]->getCurrentPosition();
 
 	cout << "Sale del for " << endl;
 	KinectOneAdapter hola;
@@ -45,7 +53,10 @@ FullBody::~FullBody()
 BodyPointPosition FullBody::returnPosition(BodyParts joint)
 {
 	const int num = joint;
+	//cout << "Numerojoint " << joint << "num: " << num << endl;
 	BodyPointPosition position = bodyPointsCollection[num]->getCurrentPosition();
+	//cout << "Position returnposition: " << endl;
+	//cout << position.x << ", " << position.y << ", " << position.z << endl;
 	return  position;
 }
 
@@ -54,8 +65,11 @@ float FullBody::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyPa
 
 
 	BodyPointPosition positionOne = returnPosition(pointOne);
+	//cout << positionOne.x << ", " << positionOne.y << ", " << positionOne.z << endl;
 	BodyPointPosition positionCenter = returnPosition(pointCenter);
+	//cout << positionCenter.x << ", " << positionCenter.y << ", " << positionCenter.z << endl;
 	BodyPointPosition positionTwo = returnPosition(pointTwo);
+	//cout << positionTwo.x << ", " << positionTwo.y << ", " << positionTwo.z << endl;
 
 	float vecAB[] = { positionOne.x - positionCenter.x, positionOne.y - positionCenter.y, positionOne.z - positionCenter.z };
 	float vecBC[] = { positionTwo.x - positionCenter.x, positionTwo.y - positionCenter.y, positionTwo.z - positionCenter.z };
@@ -67,11 +81,9 @@ float FullBody::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyPa
 	float vecNormBC[] = { vecBC[0] / magBC, vecBC[1] / magBC, vecBC[2] / magBC };
 
 	float producto = vecNormAB[0] * vecNormBC[0] + vecNormAB[1] * vecNormBC[1] + vecNormAB[2] * vecNormBC[2];
-	float angulo = cos(producto) * 180.0f / (PI);
+	float angulo = acos(producto) * 180.0f / (PI);
 
-	cout << "Angulo: ";
-
-	return 0.0f;
+	return angulo;
 }
 
 

@@ -46,11 +46,11 @@ HRESULT KinectOneAdapter::Start()
 void KinectOneAdapter::Update()
 {
 
-	cout << "def up" << endl;
+	//cout << "def up" << endl;
 		// Wait for 0ms, just quickly test if it is time to process a skeleton
 		if (WAIT_OBJECT_0 == WaitForSingleObject(m_hNextSkeletonEvent, 0))
 		{
-			cout << "def up2" << endl;
+			//cout << "def up2" << endl;
 
 			NUI_SKELETON_FRAME skeletonFrame = { 0 };
 
@@ -60,6 +60,9 @@ void KinectOneAdapter::Update()
 				// Process the skeleton frame
 				SkeletonFrameReady(&skeletonFrame);
 			}
+		}
+		else {
+			//cout << WaitForSingleObject(m_hNextSkeletonEvent, 0) << endl;
 		}
 
 }
@@ -99,7 +102,7 @@ void KinectOneAdapter::SkeletonFrameReady(NUI_SKELETON_FRAME* pSkeletonFrame)
 		switch (skeleton.eTrackingState)
 		{
 		case NUI_SKELETON_TRACKED:
-			cout << "New Tracked Frame" << endl;
+			//cout << "New Tracked Frame" << endl;
 			currentBody = skeleton;
 			updateBodyPoints(currentBody);
 			break;
