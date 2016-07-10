@@ -1,4 +1,5 @@
 #include "FullBody.h"
+#include "Movement.h"
 #include <thread>
 #include <iostream>
 using namespace std;
@@ -13,11 +14,17 @@ FullBody::FullBody()
 
 void FullBody::dataKinect()
 {
+	int movs = 0;
 	//cout << "Datakinect" << endl;
+	Movement extElb(this, "hol", 180.0f, 90.0f, WristLeft, ElbowLeft, ShoulderLeft);
 	while (true) {
 		sensorOneKinect->Update();
-		float angle = getAngleJoints(HipLeft, ShoulderLeft, ElbowLeft);
-		cout << "Angle " << angle << endl;
+		
+		if (extElb.finishMov()) {
+			movs++;
+			cout << "Movimientos " << movs << endl;
+		}
+		
 	}
 	
 }
@@ -60,31 +67,7 @@ BodyPointPosition FullBody::returnPosition(BodyParts joint)
 	return  position;
 }
 
-float FullBody::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyParts pointTwo)
-{
 
-
-	BodyPointPosition positionOne = returnPosition(pointOne);
-	//cout << positionOne.x << ", " << positionOne.y << ", " << positionOne.z << endl;
-	BodyPointPosition positionCenter = returnPosition(pointCenter);
-	//cout << positionCenter.x << ", " << positionCenter.y << ", " << positionCenter.z << endl;
-	BodyPointPosition positionTwo = returnPosition(pointTwo);
-	//cout << positionTwo.x << ", " << positionTwo.y << ", " << positionTwo.z << endl;
-
-	float vecAB[] = { positionOne.x - positionCenter.x, positionOne.y - positionCenter.y, positionOne.z - positionCenter.z };
-	float vecBC[] = { positionTwo.x - positionCenter.x, positionTwo.y - positionCenter.y, positionTwo.z - positionCenter.z };
-
-	float magAB = (float)sqrt(vecAB[0] * vecAB[0] + vecAB[1] * vecAB[1] + vecAB[2] * vecAB[2]);
-	float magBC = (float)sqrt(vecBC[0] * vecBC[0] + vecBC[1] * vecBC[1] + vecBC[2] * vecBC[2]);
-
-	float vecNormAB[] = { vecAB[0] / magAB, vecAB[1] / magAB, vecAB[2] / magAB };
-	float vecNormBC[] = { vecBC[0] / magBC, vecBC[1] / magBC, vecBC[2] / magBC };
-
-	float producto = vecNormAB[0] * vecNormBC[0] + vecNormAB[1] * vecNormBC[1] + vecNormAB[2] * vecNormBC[2];
-	float angulo = acos(producto) * 180.0f / (PI);
-
-	return angulo;
-}
 
 
 

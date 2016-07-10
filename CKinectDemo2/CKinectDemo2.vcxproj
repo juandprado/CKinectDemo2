@@ -128,12 +128,14 @@
     <ClCompile Include="FullBody.cpp" />
     <ClCompile Include="KinectOneAdapater.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BodyPoint.h" />
     <ClInclude Include="FullBody.h" />
     <ClInclude Include="KinectOneAdapater.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="Movement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

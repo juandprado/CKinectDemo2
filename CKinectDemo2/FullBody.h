@@ -18,7 +18,6 @@ public:
 	FullBody(int sensor);
 	~FullBody();
 	BodyPointPosition returnPosition(BodyParts joint);
-	float getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyParts pointTwo);
 	void dataKinect();
 
 
