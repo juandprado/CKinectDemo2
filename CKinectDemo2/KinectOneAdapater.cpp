@@ -7,6 +7,7 @@ KinectOneAdapter::KinectOneAdapter()
 {
 	counter = NULL;
 	HRESULT connect = Start();
+	// Message of kinect not connected
 	if (connect!=S_OK) {
 		cout << "Kinect not connected" << endl;
 	}
@@ -72,6 +73,8 @@ void KinectOneAdapter::Update()
 void KinectOneAdapter::updateBodyPoints(NUI_SKELETON_DATA & skeleton) {
 
 	int pointsDifferent = 0;
+
+	// for each skeleton identified 
 	for (int i = 0; i < NUI_SKELETON_POSITION_COUNT; i++) {
 		try
 		{

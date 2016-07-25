@@ -16,7 +16,7 @@ void FullBody::dataKinect()
 {
 	int movs = 0;
 	//cout << "Datakinect" << endl;
-	Movement extElb(this, "hol", 180.0f, 90.0f, HipRight, ShoulderRight, ElbowRight);
+	Movement extElb(this, "hol", 180.0f, 90.0f, ShoulderRight, ElbowRight, WristRight);
 	while (true) {
 		sensorOneKinect->Update();
 		
