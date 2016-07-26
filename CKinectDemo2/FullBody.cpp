@@ -14,6 +14,8 @@ FullBody::FullBody()
 
 void FullBody::dataKinect()
 {
+	// This function is make for test 
+
 	int movs = 0;
 	//cout << "Datakinect" << endl;
 	Movement extElb(this, "hol", 180.0f, 90.0f, ShoulderRight, ElbowRight, WristRight);
@@ -31,7 +33,7 @@ void FullBody::dataKinect()
 
 FullBody::FullBody(int sensor)
 {
-	//cout << "Entra constructor" << endl;
+	// Initialize the set of BodyPoints 
 	for (int i = 0; i < 21; i++) {
 		bodyPointsCollection[i] = new BodyPoint(translateNumber(i));
 		bodyPointsCollection[i]->getCurrentPosition();
@@ -39,13 +41,9 @@ FullBody::FullBody(int sensor)
 
 	bodyPointsCollection[14]->getCurrentPosition();
 
-	cout << "Sale del for " << endl;
 	KinectOneAdapter hola;
-	cout << "instancia kinectadapter" << endl;
 	sensorOneKinect = &hola;
 	sensorOneKinect->setBodyPoints(bodyPointsCollection);
-	cout << "Referencia kinectadapter " << endl;
-	cout << "Entra a datakinect " << endl;
 	dataKinect();
 
 }

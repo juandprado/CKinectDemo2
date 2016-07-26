@@ -5,6 +5,7 @@
 #include <NuiApi.h>
 using namespace std;
 
+// Struct to identify the joints of the body
 #ifndef _BODY_PARTS_
 #define _BODY_PARTS_
 typedef
@@ -33,9 +34,13 @@ enum BodyParts
 	Default
 };
 
+
+// Struct to manage basic operations of the joints 
 struct BodyPointPosition
 {
 	BodyParts name;
+
+	// position with  cartesians coodinates
 	float x;
 	float y;
 	float z;
@@ -56,14 +61,40 @@ struct BodyPointPosition
 
 #endif _BODY_PARTS_
 
+/**
+* this class stoore the name of the joint and the current position
+*/
 class BodyPoint
 {
 public:
+	/**
+	* @brief Constructor of the class
+	*/
 	BodyPoint();
+	
+	/**
+	* @brief Constructor of the class
+	* @param point struct with the name, and position of the joint 
+	*/
 	BodyPoint(BodyParts point);
+
+	/**
+	* @brief Destructor of the class
+	*/
 	~BodyPoint();
+
+
 	BodyParts pointRepresented;
+
+	/**
+	* @brief Set the position of the joint 
+	* @param name, and cordinates of the joint 
+	*/
 	void setPosition(BodyPointPosition position);
+
+	/**
+	* @brief return the current position of the joint 
+	*/
 	BodyPointPosition getCurrentPosition();
 
 private:

@@ -31,12 +31,6 @@ public:
 	void Update();
 
 	/**
-	  * @brief Function to return the position of the body part joint (array x, y, z)
-	  * @param part specified to return the position
-	  */
-	float* returnPosition(BodyParts part);
-
-	/**
 	  * @brief initialize the set of the body points 
 	  * @param set of body points 
 	  */
