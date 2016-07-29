@@ -18,21 +18,22 @@ void FullBody::dataKinect()
 
 	int movs = 0;
 	//cout << "Datakinect" << endl;
-	Movement extElb(this, "hol", 180.0f, 90.0f, ShoulderRight, ElbowRight, WristRight);
+	//Movement extElb(this, "hol", 180.0f, 90.0f, ShoulderRight, ElbowRight, WristRight);
 	BodyPointPosition position;
 	while (true) {
 		sensorOneKinect->Update();
 		position = bodyPointsCollection[1]->getCurrentPosition();
-		if (position.z != 0) {
-			cout << "posicion" << position.z << endl;
+			//cout << "posicion z" << position.z << endl;
+			cout << "posicion y" << position.y << endl;
+			//cout << "posicion x" << position.x << endl;
 
-		}
-		
+
+		/*
 		if (extElb.finishMov()) {
 			movs++;
 			cout << "Movimientos " << movs << endl;
 		}
-		
+		*/
 	}
 	
 }

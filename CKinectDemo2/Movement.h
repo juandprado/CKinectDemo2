@@ -24,7 +24,7 @@ public:
 	* @paramn jointCenter joint vertex of the angle, point of intersection
 	* @param jointTwo joint to set the point two of the vector two
 	*/
-	Movement(FullBody* myBody, string name, float initialAngle, float finalAngle, BodyParts joinOne, BodyParts joinCenter, BodyParts joinTwo);
+	Movement(FullBody* myBody, string name, float initialAngle, float finalAngle, BodyPointPosition pointOne, BodyPointPosition positionCenter, BodyPointPosition positionTwo);
 	
 	/**
 	* @brief Destructor of the class 
@@ -38,7 +38,7 @@ public:
 	* @param jointTwo joint to set the point two of the vector two
 	* @return angle 
 	*/
-	float getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyParts pointTwo);
+	float getAngleJoints(BodyPointPosition pointOne, BodyPointPosition pointCenter, BodyPointPosition pointTwo);
 	void calPercentMov();
 	void initMov();
 	bool finishMov();
@@ -55,13 +55,13 @@ private:
 	FullBody* myBody;
 
 	// joint to set the point one of the vector one 
-	BodyParts jointOne;
+	BodyPointPosition pointOne;
 
 	// joint vertex of the angle, point of intersection
-	BodyParts jointCenter;
+	BodyPointPosition pointCenter;
 
 	//joint to set the point two of the vector two
-	BodyParts jointTwo;
+	BodyPointPosition pointTwo;
 
 	// angle of movement 
 	float deltaAngle;

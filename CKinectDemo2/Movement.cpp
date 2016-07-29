@@ -6,15 +6,15 @@ Movement::Movement()
 {
 }
 
-Movement::Movement(FullBody * myBody, string name, float initialAngle, float finalAngle, BodyParts jointOne, BodyParts jointCenter, BodyParts jointTwo)
+Movement::Movement(FullBody * myBody, string name, float initialAngle, float finalAngle, BodyPointPosition pointOne, BodyPointPosition pointCenter, BodyPointPosition pointTwo)
 {
 	this->myBody = myBody;
 	this->name = name;
 	this->initialAngle = initialAngle;
 	this->finalAngle = finalAngle;
-	this->jointOne = jointOne;
-	this->jointCenter = jointCenter;
-	this->jointTwo = jointTwo;
+	this->pointOne = pointOne;
+	this->pointCenter = pointCenter;
+	this->pointTwo = pointTwo;
 	deltaAngle = abs(finalAngle - initialAngle);
 	percentaje = 0;
 	initial = false;
@@ -26,15 +26,15 @@ Movement::~Movement()
 }
 
 
-float Movement::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyParts pointTwo)
+float Movement::getAngleJoints(BodyPointPosition pointOne, BodyPointPosition pointCenter, BodyPointPosition pointTwo)
 {
 
 
-	BodyPointPosition positionOne = myBody->returnPosition(pointOne);
+	BodyPointPosition positionOne = pointOne;
 	//cout << positionOne.x << ", " << positionOne.y << ", " << positionOne.z << endl;
-	BodyPointPosition positionCenter = myBody->returnPosition(pointCenter);
+	BodyPointPosition positionCenter = pointCenter;
 	//cout << positionCenter.x << ", " << positionCenter.y << ", " << positionCenter.z << endl;
-	BodyPointPosition positionTwo = myBody->returnPosition(pointTwo);
+	BodyPointPosition positionTwo = pointTwo;
 	//cout << positionTwo.x << ", " << positionTwo.y << ", " << positionTwo.z << endl;
 
 	float vecAB[] = { positionOne.x - positionCenter.x, positionOne.y - positionCenter.y, positionOne.z - positionCenter.z };
@@ -56,7 +56,7 @@ float Movement::getAngleJoints(BodyParts pointOne, BodyParts pointCenter, BodyPa
 
 void Movement::calPercentMov()
 {
-	float  angleMov = getAngleJoints(jointOne, jointCenter, jointTwo);
+	float  angleMov = getAngleJoints(pointOne, pointCenter, pointTwo);
 	float progress = abs(angleMov - initialAngle);
 
 	float tempPercent = (progress / deltaAngle)*100;
@@ -69,7 +69,7 @@ void Movement::calPercentMov()
 
 void Movement::initMov()
 {
-	float  angleMov = getAngleJoints(jointOne, jointCenter, jointTwo);
+	float  angleMov = getAngleJoints(pointOne, pointCenter, pointTwo);
 
 	initial =  (angleMov >= initialAngle-7)&&(angleMov <= initialAngle + 7);
 	if (initial) {
