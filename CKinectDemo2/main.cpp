@@ -3,7 +3,6 @@
 #include <Ole2.h>
 #include <NuiApi.h>
 #include "FullBody.h"
-#include "BodyPoint.h"
 using namespace std;
 
 

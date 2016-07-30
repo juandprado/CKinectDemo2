@@ -1,5 +1,4 @@
 #pragma once
-#include "BodyPoint.h"
 #include "FullBody.h"
 
 
@@ -42,6 +41,12 @@ public:
 	void calPercentMov();
 	void initMov();
 	bool finishMov();
+
+
+	/**
+	* @brief the function calculate the angle with the points by default
+	*/
+	float getAngleMov();
 
 
 private:

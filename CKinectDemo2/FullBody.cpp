@@ -1,5 +1,5 @@
 #include "FullBody.h"
-#include "Movement.h"
+#include "MovementsCollection.h"
 #include <thread>
 #include <iostream>
 using namespace std;
@@ -18,7 +18,9 @@ void FullBody::dataKinect()
 
 	int movs = 0;
 	//cout << "Datakinect" << endl;
-	//Movement extElb(this, "hol", 180.0f, 90.0f, ShoulderRight, ElbowRight, WristRight);
+	MovementsCollection collect(this);
+	Movement* collection = collect.collection;
+	Movement headMov = collection[0];
 	BodyPointPosition position;
 	while (true) {
 		sensorOneKinect->Update();
@@ -26,14 +28,13 @@ void FullBody::dataKinect()
 			//cout << "posicion z" << position.z << endl;
 			cout << "posicion y" << position.y << endl;
 			//cout << "posicion x" << position.x << endl;
+			int  x;
+			cin >> x;
 
-
-		/*
-		if (extElb.finishMov()) {
-			movs++;
-			cout << "Movimientos " << movs << endl;
-		}
-		*/
+			if (x==0) {
+				cout << "angulo" << headMov.getAngleMov() << endl;
+			}
+		
 	}
 	
 }

@@ -5,6 +5,13 @@
 MovementsCollection::MovementsCollection(FullBody* myBody)
 {
 	this->myBody = myBody;
+	headMovements();
+	shoulderRigthMovements();
+	elbowMovements();
+	wristMovements();
+	hipMovements();
+	kneeMovements();
+	spineMovements();
 }
 
 
@@ -198,14 +205,14 @@ void MovementsCollection::spineMovements()
 
 	// inclinacion
 
-	BodyPointPosition pointCenter = myBody->returnPosition(HipCenter);
-	BodyPointPosition pointTwo = myBody->returnPosition(Spine);
+	pointCenter = myBody->returnPosition(HipCenter);
+	pointTwo = myBody->returnPosition(Spine);
 
-	BodyPointPosition pointOne = pointCenter;
+	pointOne = pointCenter;
 	pointOne.y = pointOne.y - 0.2f;
 
-	Movement elbowMovementFlex = Movement(myBody, "spine_inclination", 0.0, 150.0, pointOne, pointCenter, pointTwo);
-	collection[18] = elbowMovementFlex;
+	elbowMovementFlex = Movement(myBody, "spine_inclination", 0.0, 150.0, pointOne, pointCenter, pointTwo);
+	collection[19] = elbowMovementFlex;
 
 
 

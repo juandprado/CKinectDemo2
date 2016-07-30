@@ -1,4 +1,5 @@
 #pragma once
+#include "FullBody.h"
 #include "Movement.h"
 
 class MovementsCollection
@@ -15,9 +16,12 @@ public:
 	*/
 	~MovementsCollection();
 
-private:
+
 	// Array to each movement
 	Movement collection[20];
+
+private:
+
 
 	//Body to get the position of the joints 
 	FullBody* myBody;

@@ -103,3 +103,8 @@ bool Movement::finishMov()
 	
 	return false;
 }
+
+float Movement::getAngleMov()
+{
+	return this->getAngleJoints(this->pointOne, this->pointCenter, this->pointTwo);
+}
