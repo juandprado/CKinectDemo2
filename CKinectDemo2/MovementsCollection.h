@@ -20,11 +20,6 @@ public:
 	// Array to each movement
 	Movement collection[20];
 
-private:
-
-
-	//Body to get the position of the joints 
-	FullBody* myBody;
 
 	/**
 	* @brief initiate the angles for the head movement
@@ -36,5 +31,13 @@ private:
 	void hipMovements();
 	void kneeMovements();
 	void spineMovements();
+
+private:
+
+
+	//Body to get the position of the joints 
+	FullBody* myBody;
+
+
 };
 

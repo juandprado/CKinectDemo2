@@ -20,7 +20,6 @@ void FullBody::dataKinect()
 	//cout << "Datakinect" << endl;
 	MovementsCollection collect(this);
 	Movement* collection = collect.collection;
-	Movement headMov = collection[0];
 	BodyPointPosition position;
 	while (true) {
 		sensorOneKinect->Update();
@@ -32,6 +31,8 @@ void FullBody::dataKinect()
 			cin >> x;
 
 			if (x==0) {
+				collect.shoulderRigthMovements();
+				Movement headMov = collection[3];
 				cout << "angulo" << headMov.getAngleMov() << endl;
 			}
 		
