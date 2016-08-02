@@ -198,7 +198,7 @@ void MovementsCollection::spineMovements()
 	BodyPointPosition pointTwo = myBody->returnPosition(Spine);
 
 	BodyPointPosition pointOne = pointCenter;
-	pointOne.y = pointOne.x + 0.2f;
+	pointOne.x = pointOne.x + 0.2f;
 
 	Movement elbowMovementFlex = Movement(myBody, "spine_lateral_flexion", 0.0, 150.0, pointOne, pointCenter, pointTwo);
 	collection[18] = elbowMovementFlex;

@@ -29,11 +29,112 @@ void FullBody::dataKinect()
 			//cout << "posicion x" << position.x << endl;
 			int  x;
 			cin >> x;
-
-			if (x==0) {
+			Movement mov;
+			switch (x) {
+			case 0:
+				collect.headMovements();
+				mov = collection[0];
+				cout << "Angulo" << mov.getAngleMov() << endl;
+				break;
+			case 1:
+				collect.headMovements();
+				mov = collection[1];
+				cout << "Angulo" << mov.getAngleMov() << endl;
+				break;
+			case 2:
+				collect.headMovements();
+				mov = collection[2];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 3:
 				collect.shoulderRigthMovements();
-				Movement headMov = collection[3];
-				cout << "angulo" << headMov.getAngleMov() << endl;
+				mov = collection[3];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 4:
+				collect.shoulderRigthMovements();
+				mov = collection[4];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 5:
+				collect.shoulderRigthMovements();
+				mov = collection[5];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 6:
+				collect.shoulderRigthMovements();
+				mov = collection[6];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 7:
+				collect.shoulderRigthMovements();
+				mov = collection[7];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 8:
+				collect.elbowMovements();
+				mov = collection[8];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 9:
+				collect.wristMovements();
+				mov = collection[9];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 10:
+				collect.wristMovements();
+				mov = collection[10];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 11:
+				collect.hipMovements();
+				mov = collection[11];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 12:
+				collect.hipMovements();
+				mov = collection[12];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 13:
+				collect.hipMovements();
+				mov = collection[13];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 14:
+				collect.hipMovements();
+				mov = collection[14];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 15:
+				collect.hipMovements();
+				mov = collection[15];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 16:
+				collect.hipMovements();
+				mov = collection[16];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 17:
+				collect.kneeMovements();
+				mov = collection[17];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 18:
+				collect.spineMovements();
+				mov = collection[18];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			case 19:
+				collect.spineMovements();
+				mov = collection[19];
+				cout << "Angulo " << mov.getAngleMov() << endl;
+				break;
+			default:
+				cout << "No movimientos " << endl;
+				break;
+
 			}
 		
 	}
